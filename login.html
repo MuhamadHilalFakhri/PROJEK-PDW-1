@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+    <div class="login-card-container">
+        <div class="login-card">
+            <div class="login-card-header">
+                <h1>Sign In</h1>
+                <div>Please login to use the platform</div>
+            </div>
+            <form class="login-card-form" id="loginForm">
+                <div class="form-item">
+                    <input type="text" placeholder="Enter Email" id="emailForm" autofocus required>
+                </div>
+                <div class="form-item">
+                    <input type="password" placeholder="Enter Password" id="passwordForm" required>
+                </div>
+                <div class="form-item">
+                    <label for="roleForm">Login as:</label>
+                    <select id="roleForm" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="button" onclick="login()">Sign In</button>
+            </form>
+            <div class="login-card-footer">
+                Don't have an account? <a href="registration.html">Create a free account.</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function login() {
+            var email = document.getElementById("emailForm").value;
+            var password = document.getElementById("passwordForm").value;
+            var role = document.getElementById("roleForm").value;
+
+            var userDataJSON = localStorage.getItem("userData");
+
+            if (!userDataJSON) {
+                alert("No user registered. Please register first.");
+                return;
+            }
+
+            var userData = JSON.parse(userDataJSON);
+
+            if (email === userData.email && password === userData.password && role === userData.role) {
+                localStorage.setItem("loggedInUser", userDataJSON);
+                if (role === 'admin') {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "index1.html";
+                }
+            } else {
+                alert("Incorrect email, password, or role. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

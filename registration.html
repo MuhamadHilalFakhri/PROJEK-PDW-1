@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/registration.css">
+    <title>Registration Page</title>
+</head>
+<body>
+    <div class="registration-card-container">
+        <div class="registration-card">
+            <div class="registration-card-header">
+                <h1>Create an Account</h1>
+                <div>Please fill in the form to register</div>
+            </div>
+            <form class="registration-card-form" id="registrationForm">
+                <div class="form-item">
+                    <input type="text" placeholder="Enter Full Name" id="fullNameForm" autofocus required>
+                </div>
+                <div class="form-item">
+                    <input type="text" placeholder="Enter Email" id="emailForm" required>
+                </div>
+                <div class="form-item">
+                    <input type="password" placeholder="Enter Password" id="passwordForm" required>
+                </div>
+                <div class="form-item">
+                    <input type="password" placeholder="Confirm Password" id="confirmPasswordForm" required>
+                </div>
+                <div class="form-item">
+                    <label for="roleForm">Register as:</label>
+                    <select id="roleForm" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="button" onclick="register()">Register</button>
+            </form>
+            <div class="registration-card-footer">
+                Already have an account? <a href="login.html">Login here.</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function register() {
+            var fullName = document.getElementById("fullNameForm").value;
+            var email = document.getElementById("emailForm").value;
+            var password = document.getElementById("passwordForm").value;
+            var confirmPassword = document.getElementById("confirmPasswordForm").value;
+            var role = document.getElementById("roleForm").value;
+
+            if (fullName.trim() === "" || email.trim() === "" || password.trim() === "" || confirmPassword.trim() === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            var userData = {
+                fullName: fullName,
+                email: email,
+                password: password,
+                role: role
+            };
+
+            localStorage.setItem("userData", JSON.stringify(userData));
+            alert('Registration successful!');
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
