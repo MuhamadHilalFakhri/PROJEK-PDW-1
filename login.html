@@ -41,21 +41,28 @@
             var password = document.getElementById("passwordForm").value;
             var role = document.getElementById("roleForm").value;
 
-            var userDataJSON = localStorage.getItem("userData");
-
-            if (!userDataJSON) {
-                alert("No user registered. Please register first.");
+            // Add admin login credentials
+            if (role === 'admin' && email === 'admin' && password === 'admin') {
+                var adminUser = {
+                    email: 'admin',
+                    password: 'admin',
+                    role: 'admin'
+                };
+                localStorage.setItem("loggedInUser", JSON.stringify(adminUser));
+                window.location.href = "/admin/admin.html";
                 return;
             }
 
-            var userData = JSON.parse(userDataJSON);
+            // Check regular user login
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+            var user = users.find(user => user.email === email && user.password === password && user.role === role);
 
-            if (email === userData.email && password === userData.password && role === userData.role) {
-                localStorage.setItem("loggedInUser", userDataJSON);
+            if (user) {
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
                 if (role === 'admin') {
-                    window.location.href = "admin.html";
+                    window.location.href = "/admin/admin.html";
                 } else {
-                    window.location.href = "index1.html";
+                    window.location.href = "/masuk-login/after-login.html";
                 }
             } else {
                 alert("Incorrect email, password, or role. Please try again.");

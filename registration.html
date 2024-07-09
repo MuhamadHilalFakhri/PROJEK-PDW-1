@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/registration.css">
     <title>Registration Page</title>
 </head>
@@ -28,10 +27,18 @@
                     <input type="password" placeholder="Confirm Password" id="confirmPasswordForm" required>
                 </div>
                 <div class="form-item">
+                    <input type="text" placeholder="Enter Job" id="jobForm" required>
+                </div>
+                <div class="form-item">
+                    <input type="text" placeholder="Enter Address" id="addressForm" required>
+                </div>
+                <div class="form-item">
+                    <input type="text" placeholder="Enter Phone Number" id="phoneNumberForm" required>
+                </div>
+                <div class="form-item">
                     <label for="roleForm">Register as:</label>
                     <select id="roleForm" required>
                         <option value="user">User</option>
-                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 <button type="button" onclick="register()">Register</button>
@@ -48,8 +55,11 @@
             var password = document.getElementById("passwordForm").value;
             var confirmPassword = document.getElementById("confirmPasswordForm").value;
             var role = document.getElementById("roleForm").value;
+            var job = document.getElementById("jobForm").value;
+            var address = document.getElementById("addressForm").value;
+            var phoneNumber = document.getElementById("phoneNumberForm").value;
 
-            if (fullName.trim() === "" || email.trim() === "" || password.trim() === "" || confirmPassword.trim() === "") {
+            if (fullName.trim() === "" || email.trim() === "" || password.trim() === "" || confirmPassword.trim() === "" || job.trim() === "" || address.trim() === "" || phoneNumber.trim() === "") {
                 alert("Please fill in all fields.");
                 return;
             }
@@ -59,14 +69,21 @@
                 return;
             }
 
-            var userData = {
+            var user = {
                 fullName: fullName,
                 email: email,
                 password: password,
-                role: role
+                role: role,
+                job: job,
+                address: address,
+                phoneNumber: phoneNumber
             };
 
-            localStorage.setItem("userData", JSON.stringify(userData));
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+
             alert('Registration successful!');
             window.location.href = "login.html";
         }

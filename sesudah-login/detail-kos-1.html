@@ -19,6 +19,8 @@
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
+    <!-- Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <!-- AOS -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -36,24 +38,34 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand ms-3 fs-3" href="#"> <img src="../assets/img/logo.png" class="img-logo" alt="logo-web">
-        kostantine</a>
+        KostAmanah</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a id="chat-toggle" class="nav-link me-2" href="#"> <i data-feather="file-text"
-                onclick="initChat()"></i></a>
+        <ul class="navbar-nav ms-auto align-items-center">
+
+          <li class="nav-item abu">
+            <a id="chat-toggle" class="nav-link me-2" href="#" onclick="initChat()"> <i data-feather="file-text"></i></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link me-3" href=""> <i data-feather="heart"></i></a>
+
+          <li class="nav-item abu">
+            <a id="favorit" class="nav-link me-3" href="../favorit/favorit.html"> <i data-feather="heart"></i></a>
           </li>
+
           <li class="nav-item">
-            <button id="masukButton" type="button" class="btn btn-outline-primary me-3 fs-5 masukButton"
-              onclick="login2()">Masuk</button>
+            <div class="dropdown me-4">
+              <i class="bx bxs-user-circle fs-2 abu" data-bs-toggle="dropdown"
+              aria-expanded="false"></i>
+              <ul class="dropdown-menu dropdown-menu-end dd-rekomendasi">
+                <li><a class="dropdown-item" href="/masuk-login/Profil.html">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Riwayat</a></li>
+                <li><a class="dropdown-item" href="../index.html">Keluar</a></li>
+              </ul>
+            </div>
           </li>
+
         </ul>
       </div>
     </div>
@@ -103,10 +115,10 @@
         </div>
         <div class="tanya d-flex align-items-center justify-content-center py-3 mt-5">
           <i data-feather="file-text"></i>
-          <a href="../masuk-login/login.html">Tanya Pemilik</a>
+          <a href="https://api.whatsapp.com/send?phone=6282269790590&text=Halo%20apakah%20masih%20ada%3F" target="_blank">Tanya Pemilik</a>
         </div>
         <div class="ajukan d-flex justify-content-center py-3 mt-3">
-          <a href="../masuk-login/login.html">Ajukan Sewa</a>
+          <a href="/sesudah-login/ajukan-sewa-detail-2.html">Ajukan Sewa</a>
         </div>
 
       </div>
@@ -382,11 +394,11 @@
       </div>
 
       <!-- ulasan user -->
-      <!-- roswita -->
+      <!-- adam-->
       <div class=" ms-4 mt-3 d-flex align-items-center user">
-        <img src="../assets/img/detail-kos/roswita.png" alt="" width="60px" class="me-3">
+        <img src="../assets/img/detail-kos/letter-a.png" alt="" width="60px" class="me-3">
         <div class="text-container">
-          <p class="mb-0 mt-2">Roswita</p>
+          <p class="mb-0 mt-2">Adam</p>
           <p class="mt-0">3 bulan yang lalu</p>
         </div>
         <div class="rating ms-auto d-flex align-items-center justify-content-center">
@@ -401,15 +413,15 @@
         <div class="text-container">
           <p class="mb-0 mt-2 bold">Balasan dari pemilik kos</p>
           <p class="mt-0">3 bulan yang lalu</p>
-          <p>Halo, Kak Roswita. Terima kasih atas review dan ratingnya.</p>
+          <p>Halo, Kak Adam. Terima kasih atas review dan ratingnya.</p>
         </div>
       </div>
 
-      <!-- guntur -->
+      <!-- Arif -->
       <div class=" ms-4 mt-3 d-flex align-items-center user">
-        <img src="../assets/img/detail-kos/guntur.png" alt="" width="60px" class="me-3">
+        <img src="../assets/img/detail-kos/letter-a.png" alt="" width="60px" class="me-3">
         <div class="text-container">
-          <p class="mb-0 mt-2">Guntur</p>
+          <p class="mb-0 mt-2">Arif</p>
           <p class="mt-0">4 bulan yang lalu</p>
         </div>
         <div class="rating ms-auto d-flex align-items-center justify-content-center">
@@ -424,16 +436,16 @@
         <div class="text-container">
           <p class="mb-0 mt-2 bold">Balasan dari pemilik kos</p>
           <p class="mt-0">4 bulan yang lalu</p>
-          <p>Halo, Kak Guntur. Terima kasih atas review dan ratingnya.</p>
+          <p>Halo, Kak Arif. Terima kasih atas review dan ratingnya.</p>
         </div>
       </div>
       <hr class="ms-4 mb-4">
 
-      <!-- pemilik Billa -->
+      <!-- pemilik Alfandi -->
       <div class=" ms-4 mt-5 d-flex align-items-center">
-        <img src="../assets/img/detail-kos/billa.png" alt="" width="75px" class="me-3">
+        <img src="../assets/img/detail-kos/letter-a.png" alt="" width="75px" class="me-3">
         <div class="text-container">
-          <p class="mb-0 mt-2 fs-4 bold">Billa</p>
+          <p class="mb-0 mt-2 fs-4 bold">Alfandi</p>
           <p class="mt-0">Pemilik Kos. Aktif sejak Sept 2023</p>
         </div>
       </div>

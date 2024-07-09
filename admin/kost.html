@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mengelola Data Rumah Kost</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar position-fixed d-flex flex-column p-3" style="width: 250px;">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-4">Admin Dashboard</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="admin.html" class="nav-link text-white">
+                    <i data-feather="home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="user.html" class="nav-link text-white">
+                    <i data-feather="users"></i>
+                    Users
+                </a>
+            </li>
+            <!-- Manage Data Rumah Kost Menu -->
+            <li class="nav-item">
+                <a href="kost.html" class="nav-link text-white active" aria-current="page">
+                    <i data-feather="home"></i>
+                    Mengelola Data Rumah Kost
+                </a>
+            </li>
+            <!-- View Pembayaran Kost Menu -->
+            <li class="nav-item">
+                <a href="infopembayaran.html" class="nav-link text-white">
+                    <i data-feather="dollar-sign"></i>
+                    Melihat Pembayaran Kost
+                </a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i data-feather="bell"></i> Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i data-feather="user"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login.html"><i data-feather="log-out"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container mt-4">
+            <h1 class="mb-4">Mengelola Data Rumah Kost</h1>
+            
+            <!-- Tabs for Pemesanan Kost, Data Kamar, Data Kost -->
+            <ul class="nav nav-tabs" id="kostTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pemesanan-tab" data-bs-toggle="tab" data-bs-target="#pemesanan" type="button" role="tab" aria-controls="pemesanan" aria-selected="true">Pemesanan Kost</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="kamar-tab" data-bs-toggle="tab" data-bs-target="#kamar" type="button" role="tab" aria-controls="kamar" aria-selected="false">Data Kamar</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="kost-tab" data-bs-toggle="tab" data-bs-target="#kost" type="button" role="tab" aria-controls="kost" aria-selected="false">Data Kost</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="kostTabContent">
+                <!-- Pemesanan Kost Tab -->
+                <div class="tab-pane fade show active" id="pemesanan" role="tabpanel" aria-labelledby="pemesanan-tab">
+                    <h2 class="mt-4">Pemesanan Kost</h2>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Pemesan</th>
+                                <th>Tanggal Pemesanan</th>
+                                <th>Kamar</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pemesananTableBody">
+                            <!-- Pemesanan rows will be populated here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Data Kamar Tab -->
+                <div class="tab-pane fade" id="kamar" role="tabpanel" aria-labelledby="kamar-tab">
+                    <h2 class="mt-4">Data Kamar</h2>
+                    <button class="btn btn-primary mb-3" onclick="addRoom()">Tambah Kamar</button>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Kamar</th>
+                                <th>Tipe</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kamarTableBody">
+                            <!-- Kamar rows will be populated here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Data Kost Tab -->
+                <div class="tab-pane fade" id="kost" role="tabpanel" aria-labelledby="kost-tab">
+                    <h2 class="mt-4">Data Kost</h2>
+                    <button class="btn btn-primary mb-3" onclick="addKost()">Tambah Kost</button>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Kost</th>
+                                <th>Alamat</th>
+                                <th>Pemilik</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kostTableBody">
+                            <!-- Kost rows will be populated here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            feather.replace();
+
+            // Example data for Pemesanan Kost
+            const pemesananData = [
+                { namaPemesan: "John Doe", tanggal: "2024-06-01", kamar: "Kamar 1", status: "Diterima" },
+                { namaPemesan: "Jane Smith", tanggal: "2024-06-02", kamar: "Kamar 2", status: "Pending" }
+            ];
+
+            // Populate Pemesanan Kost table
+            const pemesananTableBody = document.getElementById("pemesananTableBody");
+            pemesananData.forEach((pemesanan, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <th scope="row">${index + 1}</th>
+                    <td>${pemesanan.namaPemesan}</td>
+                    <td>${pemesanan.tanggal}</td>
+                    <td>${pemesanan.kamar}</td>
+                    <td>${pemesanan.status}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                `;
+                pemesananTableBody.appendChild(row);
+            });
+
+            // Example data for Data Kamar
+            const kamarData = [
+                { namaKamar: "Kamar 1", tipe: "Single", harga: "500000", status: "Available" },
+                { namaKamar: "Kamar 2", tipe: "Double", harga: "750000", status: "Occupied" }
+            ];
+
+            // Populate Data Kamar table
+            const kamarTableBody = document.getElementById("kamarTableBody");
+            kamarData.forEach((kamar, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <th scope="row">${index + 1}</th>
+                    <td>${kamar.namaKamar}</td>
+                    <td>${kamar.tipe}</td>
+                    <td>${kamar.harga}</td>
+                    <td>${kamar.status}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                `;
+                kamarTableBody.appendChild(row);
+            });
+
+            // Example data for Data Kost
+            const kostData = [
+                { namaKost: "Kost A", alamat: "Jl. Mawar No. 1", pemilik: "Budi Santoso" },
+                { namaKost: "Kost B", alamat: "Jl. Melati No. 2", pemilik: "Siti Aminah" }
+            ];
+
+            // Populate Data Kost table
+            const kostTableBody = document.getElementById("kostTableBody");
+            kostData.forEach((kost, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <th scope="row">${index + 1}</th>
+                    <td>${kost.namaKost}</td>
+                    <td>${kost.alamat}</td>
+                    <td>${kost.pemilik}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                `;
+                kostTableBody.appendChild(row);
+            });
+        });
+
+        function addRoom() {
+            // Functionality for adding a room
+        }
+
+        function addKost() {
+            // Functionality for adding a kost
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
